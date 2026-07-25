@@ -51,22 +51,25 @@ export default function FAQSection() {
         <div className="flex flex-col md:flex-row gap-8 lg:gap-16">
           {/* Sidebar Tabs */}
           <div className="w-full md:w-1/3 lg:w-1/4 flex flex-col space-y-4">
-            {faqCategories.map((category) => (
-              <button
-                key={category}
-                onClick={() => {
-                  setActiveCategory(category);
-                  setOpenFaq(null);
-                }}
-                className={`py-4 px-6 text-center md:text-left rounded-lg border font-semibold transition-all ${
-                  activeCategory === category
-                    ? "border-blue-200 text-blue-600 shadow-sm bg-white ring-1 ring-blue-100"
-                    : "border-gray-200 text-gray-500 hover:border-gray-300 hover:text-gray-700 bg-white"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
+            {faqCategories.map((category) => {
+              const isActive = activeCategory === category;
+              return (
+                <button
+                  key={category}
+                  onClick={() => {
+                    setActiveCategory(category);
+                    setOpenFaq(0);
+                  }}
+                  className={`w-full py-4 sm:py-5 px-6 rounded-2xl font-bold text-base sm:text-lg transition-all duration-200 text-center md:text-left cursor-pointer ${
+                    isActive
+                      ? "bg-white border-2 border-blue-500 text-blue-600 shadow-[0_8px_25px_rgba(37,99,235,0.12)]"
+                      : "bg-white border border-gray-200 text-gray-700 hover:border-gray-300 hover:text-gray-900 hover:shadow-sm"
+                  }`}
+                >
+                  {category}
+                </button>
+              );
+            })}
           </div>
 
           {/* FAQ Accordions */}
