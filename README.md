@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Accredian Enterprise - Partial Clone
 
-## Getting Started
+This project is a partial clone of the [Accredian Enterprise](https://enterprise.accredian.com/) landing page, built as part of the Full Stack Developer Intern assignment.
 
-First, run the development server:
+## Setup Instructions
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. **Clone the repository:**
+   ```bash
+   git clone <your-repo-url>
+   cd accredian
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+   The site will be accessible at [http://localhost:3000](http://localhost:3000).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. **Build for production:**
+   ```bash
+   npm run build
+   npm start
+   ```
 
-## Learn More
+## Approach Taken
 
-To learn more about Next.js, take a look at the following resources:
+The goal was to build a premium, highly responsive Next.js App Router application that mimics the structure, styling, and animations of the Accredian Enterprise page.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Tech Stack**: Next.js 16+ (App Router), React, Tailwind CSS, TypeScript.
+2. **Architecture**: 
+   - A modular component structure separated into layout (`Navbar`, `Footer`), sections (`HeroSection`, `StatsBar`, `CATFramework`, etc.), and reusable UI elements (`Button`, `Card`, `SectionHeading`, `AnimatedCounter`).
+   - A mock API route (`app/api/leads/route.ts`) handles lead capture submissions securely, storing data locally in `data/leads.json`.
+3. **Styling & Animations**: 
+   - Used Tailwind CSS for robust layout and custom global CSS for keyframe animations (e.g., marquee carousels, scroll-triggered fade-ins, counting numbers).
+   - Intersection Observers via custom React hooks were utilized heavily to create smooth reveal animations as sections enter the viewport, giving the site a modern, premium feel.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## AI Usage Explanation
 
-## Deploy on Vercel
+Antigravity (an AI coding assistant powered by Gemini) was used to accelerate the development process. 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Where AI Helped:**
+- Rapid scaffolding of the Next.js project and component files.
+- Generating parallel subagents to concurrently build distinct components (e.g., `HeroSection`, `Navbar`, `LeadCaptureForm`).
+- Creating standard boilerplate code for custom hooks (like `useInView`) and utility components (like `AnimatedCounter`).
+- Setting up the Next.js App Router API route for the lead capture form with validation logic.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**What was Modified/Improved Manually:**
+- Refining and fixing Next.js/Turbopack configurations (e.g., handling lockfile warnings and `next.config.ts` issues).
+- Rectifying TypeScript errors and hook parameter definitions (e.g., fixing `useAnimateOnScroll` types).
+- Manually structuring the `page.tsx` rendering order and ensuring the visual fidelity of individual sections (like the marquee effect in `PartnersSection` and the layout of the `CATFramework` process).
+
+## Improvements with More Time
+
+If given more time, I would focus on:
+- **Database Integration**: Replacing the mock `leads.json` file with a real database like PostgreSQL (using Prisma or Firebase Data Connect) for robust lead management.
+- **Headless CMS**: Integrating Sanity or Contentful to manage the page's content (e.g., testimonials, FAQs, and domain expertise descriptions) dynamically without hardcoding them in React.
+- **End-to-End Testing**: Adding Cypress or Playwright tests to ensure critical user flows (like form submissions and responsive mobile navigation) remain unbroken.
+- **Analytics & SEO**: Expanding metadata, adding Google Analytics/Tag Manager snippets, and integrating comprehensive schema markup for better discoverability.
