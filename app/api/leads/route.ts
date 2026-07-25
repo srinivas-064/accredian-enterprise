@@ -14,10 +14,18 @@ interface LeadData {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    let body;
+    try {
+      body = await request.json();
+    } catch {
+      return NextResponse.json(
+        { error: 'Invalid JSON request body.' },
+        { status: 400 }
+      );
+    }
      
     // Validation
-    if (!body.name || !body.email || !body.company) {
+    if (!body || !body.name || !body.email || !body.company) {
       return NextResponse.json(
         { error: 'Name, email, and company are required fields.' },
         { status: 400 }
@@ -53,8 +61,12 @@ export async function POST(request: NextRequest) {
     
     let leads: LeadData[] = [];
     if (fs.existsSync(filePath)) {
-      const fileContent = fs.readFileSync(filePath, 'utf-8');
-      leads = JSON.parse(fileContent);
+      try {
+        const fileContent = fs.readFileSync(filePath, 'utf-8');
+        leads = fileContent.trim() ? JSON.parse(fileContent) : [];
+      } catch {
+        leads = [];
+      }
     }
     
     leads.push(lead);
@@ -81,8 +93,13 @@ export async function GET() {
       return NextResponse.json({ leads: [] });
     }
     
-    const fileContent = fs.readFileSync(filePath, 'utf-8');
-    const leads = JSON.parse(fileContent);
+    let leads: LeadData[] = [];
+    try {
+      const fileContent = fs.readFileSync(filePath, 'utf-8');
+      leads = fileContent.trim() ? JSON.parse(fileContent) : [];
+    } catch {
+      leads = [];
+    }
     
     return NextResponse.json({ leads });
   } catch (error) {
