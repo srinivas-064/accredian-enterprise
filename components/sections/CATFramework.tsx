@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 const frameworkSteps = [
   {
     title: "Concept",
@@ -72,8 +74,8 @@ export default function CATFramework() {
     <div className="bg-white" id="cat">
       
       {/* 1. CAT Framework Section */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
+      <section className="py-16 md:py-20 bg-[#F4F8FE]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-10 md:mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
             The <span className="text-blue-600">CAT Framework</span>
           </h2>
@@ -82,32 +84,32 @@ export default function CATFramework() {
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="relative flex flex-col md:flex-row justify-between items-center py-10">
-            {/* The S-curve SVG background (approximate) */}
-            <div className="absolute inset-0 hidden md:flex items-center justify-center z-0">
-              <svg className="w-full h-48 text-blue-500" preserveAspectRatio="none" viewBox="0 0 800 200" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeDasharray="8 8">
-                <path d="M 100,100 C 250,-50 350,250 500,100 C 650,-50 750,250 800,100" />
-              </svg>
-            </div>
+        <div className="max-w-6xl mx-auto px-4 hidden md:block">
+          <Image
+            src="/assets/accredian/cat-framework.svg"
+            alt="CAT framework: Concept, Application, Tools"
+            width={1100}
+            height={420}
+            className="w-full"
+          />
+        </div>
 
-            {frameworkSteps.map((step, idx) => (
-              <div key={idx} className="relative z-10 w-64 h-64 bg-white rounded-full border-4 border-blue-500 flex flex-col items-center justify-center shadow-lg mb-8 md:mb-0">
-                <div className="mb-4">
-                  {step.icon}
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{step.title}</h3>
-                <p className="text-sm text-gray-500 text-center px-6">{step.description}</p>
+        <div className="md:hidden max-w-sm mx-auto px-4 space-y-5">
+          {frameworkSteps.map((step, idx) => (
+            <div key={idx} className="bg-white rounded-2xl border border-blue-100 p-6 text-center shadow-sm">
+              <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-blue-50">
+                {step.icon}
               </div>
-            ))}
-          </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{step.title}</h3>
+              <p className="text-sm text-gray-600">{step.description}</p>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* 2. How We Deliver Results Section */}
-      <section className="py-24 bg-gray-50/50" id="how-it-works">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
-          <p className="text-gray-500 font-semibold uppercase tracking-wider mb-2">Our Solutions</p>
+      <section className="py-16 md:py-20 bg-white" id="how-it-works">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
             How We <span className="text-blue-600">Deliver Results</span> That Matter?
           </h2>
@@ -119,7 +121,7 @@ export default function CATFramework() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {deliverySteps.map((step, idx) => (
-              <div key={idx} className="relative bg-[#F4F8FE] rounded-2xl p-8 pt-12 flex flex-col items-center text-center shadow-sm border border-gray-100">
+              <div key={idx} className="relative bg-[#F4F8FE] rounded-xl p-8 pt-10 flex flex-col items-center text-center shadow-sm border border-blue-200">
                 {/* Left blue border decoration */}
                 <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-1/2 bg-blue-600 rounded-r-md"></div>
                 

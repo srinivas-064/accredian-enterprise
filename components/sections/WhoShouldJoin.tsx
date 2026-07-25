@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 const audiences = [
   {
     title: "Tech Professionals",
@@ -42,12 +44,12 @@ const audiences = [
 
 export default function WhoShouldJoin() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-16 md:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-[#1868DF] rounded-3xl overflow-hidden flex flex-col lg:flex-row relative">
+        <div className="bg-[#1868DF] rounded-xl overflow-hidden flex flex-col lg:flex-row relative min-h-[430px]">
           
           {/* Left Side */}
-          <div className="lg:w-[45%] p-10 lg:p-14 text-white z-10 flex flex-col justify-between">
+          <div className="lg:w-[45%] p-8 sm:p-10 lg:p-12 text-white z-10 flex flex-col justify-between">
             <div>
               <p className="text-blue-100 font-medium mb-2 text-lg">Who Should Join?</p>
               <h2 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">
@@ -55,14 +57,19 @@ export default function WhoShouldJoin() {
               </h2>
             </div>
             
-            {/* Image placeholder */}
-            <div className="mt-8 lg:mt-0 relative h-64 lg:h-80 w-full rounded-xl border border-white/20 bg-blue-500/20 flex items-center justify-center">
-              <span className="text-blue-200">Human Illustration Space</span>
+            <div className="mt-6 lg:mt-0 relative h-64 lg:h-72 w-full">
+              <Image
+                src="/assets/accredian/who-should-join.png"
+                alt="Professionals joining enterprise learning"
+                fill
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-contain object-bottom"
+              />
             </div>
           </div>
 
           {/* Right Side */}
-          <div className="lg:w-[55%] p-10 lg:p-14 lg:pl-0 z-10 flex items-center">
+          <div className="lg:w-[55%] p-8 sm:p-10 lg:p-12 lg:pl-0 z-10 flex items-center">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
               {audiences.map((audience, idx) => (
                 <div key={idx} className="flex flex-col">

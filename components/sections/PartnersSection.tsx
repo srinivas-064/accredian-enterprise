@@ -1,7 +1,16 @@
 "use client";
 
+import Image from "next/image";
+
 export default function PartnersSection() {
-  const clients = ["client", "client", "client", "client", "client", "client", "client", "client"];
+  const clients = [
+    { name: "Reliance", src: "/assets/accredian/reliance.png" },
+    { name: "HCL", src: "/assets/accredian/hcl.png" },
+    { name: "IBM", src: "/assets/accredian/ibm.png" },
+    { name: "CRIF", src: "/assets/accredian/crif.png" },
+    { name: "ADP", src: "/assets/accredian/adp.svg" },
+    { name: "Bayer", src: "/assets/accredian/bayer.svg" },
+  ];
 
   return (
     <section id="clients" className="py-16 bg-white relative overflow-hidden">
@@ -24,9 +33,9 @@ export default function PartnersSection() {
             {clients.map((client, idx) => (
               <div
                 key={idx}
-                className="flex items-center justify-center rounded-lg border border-gray-200 px-10 py-6 bg-white text-gray-400 font-bold text-2xl min-w-[200px] shadow-sm uppercase tracking-widest"
+                className="flex items-center justify-center rounded-lg border border-gray-200 px-10 py-6 bg-white min-w-[200px] h-[92px] shadow-sm"
               >
-                {client}
+                <Image src={client.src} alt={`${client.name} logo`} width={130} height={54} className="max-h-12 w-auto object-contain" />
               </div>
             ))}
           </div>
@@ -35,9 +44,9 @@ export default function PartnersSection() {
             {clients.map((client, idx) => (
               <div
                 key={`dup-${idx}`}
-                className="flex items-center justify-center rounded-lg border border-gray-200 px-10 py-6 bg-white text-gray-400 font-bold text-2xl min-w-[200px] shadow-sm uppercase tracking-widest"
+                className="flex items-center justify-center rounded-lg border border-gray-200 px-10 py-6 bg-white min-w-[200px] h-[92px] shadow-sm"
               >
-                {client}
+                <Image src={client.src} alt={`${client.name} logo`} width={130} height={54} className="max-h-12 w-auto object-contain" />
               </div>
             ))}
           </div>

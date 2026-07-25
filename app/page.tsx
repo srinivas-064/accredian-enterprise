@@ -8,7 +8,6 @@ import WhoShouldJoin from "@/components/sections/WhoShouldJoin";
 import CATFramework from "@/components/sections/CATFramework";
 import FAQSection from "@/components/sections/FAQSection";
 import Testimonials from "@/components/sections/Testimonials";
-import LeadCaptureForm from "@/components/sections/LeadCaptureForm";
 
 export default function Home() {
   return (
@@ -23,7 +22,6 @@ export default function Home() {
       <CATFramework />
       <FAQSection />
       <Testimonials />
-      <LeadCaptureForm />
     </>
   );
 }

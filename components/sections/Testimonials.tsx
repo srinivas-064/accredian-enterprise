@@ -1,22 +1,23 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const testimonials = [
   {
     company: "ADP",
     quote: "We would like to thank Accredian for the wonderful support and the beautiful journey. The team turned our vision into reality with unparalleled dedication, service, and expertise throughout the entire process.",
-    logoColor: "text-red-600" // Using color text as logo placeholder for ADP
+    logo: "/assets/accredian/adp.svg"
   },
   {
     company: "Bayer",
     quote: "Accredian's commitment to excellence is unmatched. They consistently go the extra mile to ensure our needs are met and exceeded, providing reliable support and high-quality service every step of the way.",
-    logoColor: "text-green-600"
+    logo: "/assets/accredian/bayer.svg"
   },
   {
     company: "Reliance",
     quote: "Choosing Accredian for the learning & development of our employees was a beneficial decision. The value derived from the course is immense & their support team is always there to help our employees.",
-    logoColor: "text-blue-800"
+    logo: "/assets/accredian/reliance.png"
   }
 ];
 
@@ -32,11 +33,11 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section id="testimonials" className="py-24 bg-white">
+    <section id="testimonials" className="py-16 md:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
             Testimonials from <span className="text-blue-600">Our Partners</span>
           </h2>
@@ -54,12 +55,11 @@ export default function Testimonials() {
             {testimonials.map((testimonial, idx) => (
               <div key={idx} className="w-full flex-shrink-0 px-4 md:w-1/2">
                 <div className="bg-white rounded-2xl p-10 h-full border border-gray-200 shadow-[0_4px_20px_rgb(0,0,0,0.04)]">
-                  {/* Logo Placeholder */}
-                  <div className={`text-3xl font-extrabold italic mb-6 ${testimonial.logoColor}`}>
-                    {testimonial.company}
+                  <div className="relative mb-6 h-14 w-24">
+                    <Image src={testimonial.logo} alt={`${testimonial.company} logo`} fill className="object-contain object-left" />
                   </div>
                   <p className="text-gray-600 text-lg leading-relaxed italic">
-                    "{testimonial.quote}"
+                    &quot;{testimonial.quote}&quot;
                   </p>
                 </div>
               </div>
@@ -68,11 +68,11 @@ export default function Testimonials() {
             {testimonials.map((testimonial, idx) => (
               <div key={`dup-${idx}`} className="w-full flex-shrink-0 px-4 md:w-1/2 hidden md:block">
                 <div className="bg-white rounded-2xl p-10 h-full border border-gray-200 shadow-[0_4px_20px_rgb(0,0,0,0.04)]">
-                  <div className={`text-3xl font-extrabold italic mb-6 ${testimonial.logoColor}`}>
-                    {testimonial.company}
+                  <div className="relative mb-6 h-14 w-24">
+                    <Image src={testimonial.logo} alt={`${testimonial.company} logo`} fill className="object-contain object-left" />
                   </div>
                   <p className="text-gray-600 text-lg leading-relaxed italic">
-                    "{testimonial.quote}"
+                    &quot;{testimonial.quote}&quot;
                   </p>
                 </div>
               </div>
@@ -81,7 +81,7 @@ export default function Testimonials() {
         </div>
 
         {/* Pagination Dots */}
-        <div className="flex justify-center space-x-2 mb-24">
+        <div className="flex justify-center space-x-2 mb-16">
           {testimonials.map((_, idx) => (
             <button
               key={idx}
@@ -104,7 +104,7 @@ export default function Testimonials() {
             </div>
             <div>
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">Want to Learn More About Our Training Solutions?</h3>
-              <p className="text-blue-100 text-lg">Get Expert Guidance for Your Team's Success!</p>
+              <p className="text-blue-100 text-lg">Get Expert Guidance for Your Team&apos;s Success!</p>
             </div>
           </div>
           

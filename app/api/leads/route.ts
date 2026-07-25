@@ -15,7 +15,7 @@ interface LeadData {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    
+     
     // Validation
     if (!body.name || !body.email || !body.company) {
       return NextResponse.json(
