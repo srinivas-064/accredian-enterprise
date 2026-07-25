@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import Link from "next/link";
 
 const navLinks = [
@@ -36,15 +35,13 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
-            <Image
-              src="/assets/accredian/accredian-logo.webp"
-              alt="Accredian"
-              width={150}
-              height={42}
-              priority
-              className="h-auto w-[132px] sm:w-[150px]"
-            />
+          <Link href="/" className="flex flex-col justify-center select-none group">
+            <span className="text-2xl sm:text-3xl font-extrabold text-blue-600 tracking-tight leading-none group-hover:text-blue-700 transition-colors">
+              accredian
+            </span>
+            <span className="text-[10px] sm:text-[11px] text-gray-500 font-medium tracking-normal mt-0.5">
+              credentials that matter
+            </span>
           </Link>
 
           {/* Desktop Nav */}

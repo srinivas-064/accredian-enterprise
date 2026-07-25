@@ -8,9 +8,11 @@ export default function Footer() {
         {/* Top Row: Logo & Contact CTA */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center pb-8 border-b border-gray-200">
           <div className="mb-6 md:mb-0">
-            <Link href="/" className="flex flex-col mb-4">
-              <span className="text-3xl font-bold text-blue-600 tracking-tight">accredian</span>
-              <span className="text-xs text-gray-500 italic uppercase tracking-wider -mt-1">
+            <Link href="/" className="flex flex-col mb-4 select-none group">
+              <span className="text-3xl font-extrabold text-blue-600 tracking-tight leading-none group-hover:text-blue-700 transition-colors">
+                accredian
+              </span>
+              <span className="text-xs text-gray-500 font-medium tracking-normal mt-0.5">
                 credentials that matter
               </span>
             </Link>
