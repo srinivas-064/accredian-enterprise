@@ -1,7 +1,18 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { useState, useEffect } from "react";
+import Link from "next/link";
+
+const navLinks = [
+  { label: "Home", href: "#" },
+  { label: "Stats", href: "#stats" },
+  { label: "Clients", href: "#clients" },
+  { label: "Accredian Edge", href: "#edge" },
+  { label: "CAT", href: "#cat" },
+  { label: "How It Works", href: "#how-it-works" },
+  { label: "FAQs", href: "#faq" },
+  { label: "Testimonials", href: "#testimonials" },
+];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -9,176 +20,72 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 10);
     };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-  }, [mobileMenuOpen]);
-
-  const navLinks = [
-    { label: 'Solutions', href: '#solutions' },
-    { label: 'Framework', href: '#framework' },
-    { label: 'Programs', href: '#programs' },
-    { label: 'Testimonials', href: '#testimonials' },
-    { label: 'Contact Us', href: '#contact' },
-  ];
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-md py-4' : 'bg-transparent py-6'
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        isScrolled ? "bg-white shadow-md py-4" : "bg-white py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-10">
+        <div className="flex justify-between items-center">
           {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link
-              href="/"
-              className={`text-2xl font-extrabold tracking-tight ${
-                isScrolled ? 'text-[#1B3B7D]' : 'text-white'
-              }`}
-            >
-              accr
-              <span className="bg-gradient-to-r from-[#1B3B7D] to-[#F97316] text-transparent bg-clip-text">
-                e
-              </span>
-              dian
-            </Link>
-          </div>
+          <Link href="/" className="flex flex-col">
+            <span className="text-2xl font-bold text-blue-600 tracking-tight">accredian</span>
+            <span className="text-[10px] text-gray-500 italic uppercase tracking-wider -mt-1">
+              credentials that matter
+            </span>
+          </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Desktop Nav */}
+          <div className="hidden lg:flex items-center space-x-6">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className={`text-sm font-medium transition-colors hover:text-[#F97316] ${
-                  isScrolled ? 'text-gray-700' : 'text-gray-100'
-                }`}
+                className="text-sm font-semibold text-gray-800 hover:text-blue-600 transition-colors"
               >
                 {link.label}
               </a>
             ))}
           </div>
 
-          {/* Desktop CTA Button */}
-          <div className="hidden md:block">
-            <button className="bg-gradient-to-r from-[#1B3B7D] to-blue-600 hover:from-blue-700 hover:to-blue-600 text-white px-6 py-2 rounded-full font-medium transition-all shadow-md hover:shadow-lg">
-              Get Started
-            </button>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="flex md:hidden">
+          {/* Mobile Menu Button */}
+          <div className="lg:hidden">
             <button
-              onClick={() => setMobileMenuOpen(true)}
-              className={`p-2 rounded-md focus:outline-none ${
-                isScrolled ? 'text-gray-800' : 'text-white'
-              }`}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="text-gray-800 focus:outline-none"
             >
-              <span className="sr-only">Open main menu</span>
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
               </svg>
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 flex justify-end md:hidden">
-          {/* Backdrop */}
-          <div
-            className="fixed inset-0 bg-black/60 transition-opacity"
-            onClick={() => setMobileMenuOpen(false)}
-          ></div>
-
-          {/* Sliding Menu */}
-          <div className="relative w-full max-w-sm bg-white h-full flex flex-col overflow-y-auto shadow-xl animate-[slideIn_0.3s_ease-out]">
-            <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-100">
-              <span className="text-2xl font-extrabold tracking-tight text-[#1B3B7D]">
-                accr<span className="text-[#F97316]">e</span>dian
-              </span>
-              <button
-                type="button"
-                className="rounded-md p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 focus:outline-none"
+        <div className="lg:hidden absolute top-full left-0 w-full bg-white shadow-lg py-4 border-t border-gray-100">
+          <div className="flex flex-col px-4 space-y-4">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
+                className="text-gray-800 font-semibold hover:text-blue-600"
               >
-                <span className="sr-only">Close menu</span>
-                <svg
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </div>
-            <div className="px-4 py-6 space-y-6 sm:px-6">
-              <nav className="flex flex-col space-y-4">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    className="text-lg font-medium text-gray-900 hover:text-[#F97316] transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </nav>
-              <div className="pt-6 border-t border-gray-100">
-                <button className="w-full bg-gradient-to-r from-[#1B3B7D] to-blue-600 text-white px-4 py-3 rounded-full font-medium transition-all shadow-md">
-                  Get Started
-                </button>
-              </div>
-            </div>
+                {link.label}
+              </a>
+            ))}
           </div>
         </div>
       )}
-      <style jsx global>{`
-        @keyframes slideIn {
-          from {
-            transform: translateX(100%);
-          }
-          to {
-            transform: translateX(0);
-          }
-        }
-      `}</style>
     </nav>
   );
 }

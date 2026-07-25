@@ -3,10 +3,11 @@ import StatsBar from "@/components/sections/StatsBar";
 import PartnersSection from "@/components/sections/PartnersSection";
 import AccredianEdge from "@/components/sections/AccredianEdge";
 import DomainExpertise from "@/components/sections/DomainExpertise";
+import CourseSegmentation from "@/components/sections/CourseSegmentation";
 import WhoShouldJoin from "@/components/sections/WhoShouldJoin";
 import CATFramework from "@/components/sections/CATFramework";
-import Testimonials from "@/components/sections/Testimonials";
 import FAQSection from "@/components/sections/FAQSection";
+import Testimonials from "@/components/sections/Testimonials";
 import LeadCaptureForm from "@/components/sections/LeadCaptureForm";
 
 export default function Home() {
@@ -17,10 +18,11 @@ export default function Home() {
       <PartnersSection />
       <AccredianEdge />
       <DomainExpertise />
+      <CourseSegmentation />
       <WhoShouldJoin />
       <CATFramework />
-      <Testimonials />
       <FAQSection />
+      <Testimonials />
       <LeadCaptureForm />
     </>
   );

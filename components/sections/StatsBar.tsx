@@ -1,37 +1,49 @@
-'use client'
+"use client";
 
-import React from 'react'
-import AnimatedCounter from '@/components/ui/AnimatedCounter'
+import AnimatedCounter from "@/components/ui/AnimatedCounter";
 
 export default function StatsBar() {
-  const stats = [
-    { number: 50000, suffix: '+', label: 'Professionals Trained' },
-    { number: 500, suffix: '+', label: 'Training Sessions' },
-    { number: 200, suffix: '+', label: 'Programs Delivered' },
-    { number: 98, suffix: '%', label: 'Satisfaction Rate' },
-  ]
-
   return (
-    <section id="stats" className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16">
-      <div className="bg-white rounded-2xl shadow-xl py-8 px-6 border border-gray-100">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {stats.map((stat, index) => (
-            <div 
-              key={index} 
-              className={`flex flex-col items-center justify-center text-center ${
-                index !== stats.length - 1 ? 'md:border-r md:border-gray-200' : ''
-              }`}
-            >
-              <div className="text-3xl md:text-4xl font-bold text-[#1B3B7D] mb-2 flex items-center">
-                <AnimatedCounter end={stat.number} suffix={stat.suffix} duration={2000} />
-              </div>
-              <p className="text-sm font-medium text-gray-500 uppercase tracking-wide">
-                {stat.label}
-              </p>
+    <section id="stats" className="py-16 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+            Our <span className="text-blue-600">Track Record</span>
+          </h2>
+          <p className="text-lg text-gray-600 font-medium">The Numbers Behind Our Success</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+          
+          <div className="pt-6 md:pt-0 flex flex-col items-center">
+            <div className="text-5xl font-bold text-blue-600 mb-4 flex items-center">
+              <AnimatedCounter end={10} />K+
             </div>
-          ))}
+            <p className="text-gray-700 font-medium max-w-xs text-lg">
+              Professionals trained for exceptional career success
+            </p>
+          </div>
+
+          <div className="pt-6 md:pt-0 flex flex-col items-center">
+            <div className="text-5xl font-bold text-blue-600 mb-4 flex items-center">
+              <AnimatedCounter end={200} />+
+            </div>
+            <p className="text-gray-700 font-medium max-w-xs text-lg">
+              Sessions delivered with unmatched learning excellence
+            </p>
+          </div>
+
+          <div className="pt-6 md:pt-0 flex flex-col items-center">
+            <div className="text-5xl font-bold text-blue-600 mb-4 flex items-center">
+              <AnimatedCounter end={5} />K+
+            </div>
+            <p className="text-gray-700 font-medium max-w-xs text-lg">
+              Active learners engaged in dynamic courses
+            </p>
+          </div>
+
         </div>
       </div>
     </section>
-  )
+  );
 }

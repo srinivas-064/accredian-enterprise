@@ -1,146 +1,124 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import SectionHeading from "@/components/ui/SectionHeading";
 
 const testimonials = [
   {
-    name: "Rajesh Kumar",
-    title: "VP of Engineering",
-    company: "TechCorp India",
-    initials: "RK",
-    color: "#3B82F6",
-    quote:
-      "Accredian transformed our engineering team's capabilities. The customized AI training program helped us reduce development cycles by 40% and significantly improved our team's confidence with cutting-edge technologies.",
+    company: "ADP",
+    quote: "We would like to thank Accredian for the wonderful support and the beautiful journey. The team turned our vision into reality with unparalleled dedication, service, and expertise throughout the entire process.",
+    logoColor: "text-red-600" // Using color text as logo placeholder for ADP
   },
   {
-    name: "Priya Sharma",
-    title: "Chief Learning Officer",
-    company: "Global Solutions Ltd",
-    initials: "PS",
-    color: "#10B981",
-    quote:
-      "The ROI we've seen from Accredian's programs is remarkable. Within 6 months, our teams showed measurable improvement in productivity and innovation. The CAT framework truly delivers results.",
+    company: "Bayer",
+    quote: "Accredian's commitment to excellence is unmatched. They consistently go the extra mile to ensure our needs are met and exceeded, providing reliable support and high-quality service every step of the way.",
+    logoColor: "text-green-600"
   },
   {
-    name: "Michael Chen",
-    title: "Head of Data Science",
-    company: "FinServe Analytics",
-    initials: "MC",
-    color: "#8B5CF6",
-    quote:
-      "What sets Accredian apart is their deep understanding of enterprise needs. The training wasn't generic—it was tailored precisely to our data challenges and business context.",
-  },
-  {
-    name: "Anita Desai",
-    title: "HR Director",
-    company: "Innovate Corp",
-    initials: "AD",
-    color: "#F97316",
-    quote:
-      "We've partnered with many training providers, but Accredian's approach is unique. The skill gap analysis alone provided insights that reshaped our entire L&D strategy.",
-  },
+    company: "Reliance",
+    quote: "Choosing Accredian for the learning & development of our employees was a beneficial decision. The value derived from the course is immense & their support team is always there to help our employees.",
+    logoColor: "text-blue-800"
+  }
 ];
 
 export default function Testimonials() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Auto scroll
   useEffect(() => {
     const timer = setInterval(() => {
-      setActiveIndex((current) => (current + 1) % testimonials.length);
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
     }, 5000);
     return () => clearInterval(timer);
   }, []);
 
-  const handleDotClick = (index: number) => {
-    setActiveIndex(index);
-  };
-
-  const handlePrev = () => {
-    setActiveIndex((current) =>
-      current === 0 ? testimonials.length - 1 : current - 1
-    );
-  };
-
-  const handleNext = () => {
-    setActiveIndex((current) => (current + 1) % testimonials.length);
-  };
-
   return (
-    <section id="testimonials" className="py-20 bg-white">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          title="What Our Partners Say"
-          subtitle="Hear from organizations that transformed their workforce"
-        />
+    <section id="testimonials" className="py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+            Testimonials from <span className="text-blue-600">Our Partners</span>
+          </h2>
+          <p className="text-lg text-gray-600 font-medium">
+            What <span className="text-blue-600">Our Clients</span> Are Saying
+          </p>
+        </div>
 
-        <div className="mt-16 relative">
-          <div className="relative overflow-hidden rounded-2xl bg-slate-50 p-8 md:p-12 border border-gray-100 shadow-sm min-h-[350px] flex flex-col justify-center">
-            {/* Background Quote Mark */}
-            <div className="absolute top-4 left-6 text-8xl font-serif text-blue-900/5 leading-none select-none">
-              &quot;
-            </div>
-
-            <div className="relative z-10 transition-opacity duration-500">
-              <div className="flex justify-center mb-6 text-amber-400 text-xl tracking-widest">
-                ★★★★★
-              </div>
-              
-              <p className="text-lg md:text-2xl text-center text-gray-700 italic leading-relaxed mb-10 max-w-3xl mx-auto">
-                "{testimonials[activeIndex].quote}"
-              </p>
-
-              <div className="flex flex-col items-center justify-center">
-                <div
-                  className="w-14 h-14 rounded-full flex items-center justify-center text-white font-bold text-lg mb-3 shadow-md"
-                  style={{ backgroundColor: testimonials[activeIndex].color }}
-                >
-                  {testimonials[activeIndex].initials}
+        {/* Testimonial Cards Carousel */}
+        <div className="relative overflow-hidden mb-8">
+          <div 
+            className="flex transition-transform duration-500 ease-in-out"
+            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          >
+            {testimonials.map((testimonial, idx) => (
+              <div key={idx} className="w-full flex-shrink-0 px-4 md:w-1/2">
+                <div className="bg-white rounded-2xl p-10 h-full border border-gray-200 shadow-[0_4px_20px_rgb(0,0,0,0.04)]">
+                  {/* Logo Placeholder */}
+                  <div className={`text-3xl font-extrabold italic mb-6 ${testimonial.logoColor}`}>
+                    {testimonial.company}
+                  </div>
+                  <p className="text-gray-600 text-lg leading-relaxed italic">
+                    "{testimonial.quote}"
+                  </p>
                 </div>
-                <h4 className="font-bold text-gray-900 text-lg">
-                  {testimonials[activeIndex].name}
-                </h4>
-                <p className="text-gray-500 text-sm">
-                  {testimonials[activeIndex].title}, {testimonials[activeIndex].company}
-                </p>
               </div>
-            </div>
-          </div>
-
-          {/* Navigation Controls */}
-          <div className="flex justify-center items-center gap-4 mt-8">
-            <button
-              onClick={handlePrev}
-              className="hidden md:flex w-10 h-10 rounded-full border border-gray-200 items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition-colors focus:outline-none"
-              aria-label="Previous testimonial"
-            >
-              ←
-            </button>
-
-            <div className="flex gap-2 mx-4">
-              {testimonials.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => handleDotClick(idx)}
-                  className={`h-2.5 rounded-full transition-all duration-300 focus:outline-none ${
-                    idx === activeIndex
-                      ? "w-8 bg-blue-900"
-                      : "w-2.5 bg-gray-300 hover:bg-gray-400"
-                  }`}
-                  aria-label={`Go to testimonial ${idx + 1}`}
-                />
-              ))}
-            </div>
-
-            <button
-              onClick={handleNext}
-              className="hidden md:flex w-10 h-10 rounded-full border border-gray-200 items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition-colors focus:outline-none"
-              aria-label="Next testimonial"
-            >
-              →
-            </button>
+            ))}
+            {/* Duplicate for smooth viewing on desktop (showing 2 at a time) */}
+            {testimonials.map((testimonial, idx) => (
+              <div key={`dup-${idx}`} className="w-full flex-shrink-0 px-4 md:w-1/2 hidden md:block">
+                <div className="bg-white rounded-2xl p-10 h-full border border-gray-200 shadow-[0_4px_20px_rgb(0,0,0,0.04)]">
+                  <div className={`text-3xl font-extrabold italic mb-6 ${testimonial.logoColor}`}>
+                    {testimonial.company}
+                  </div>
+                  <p className="text-gray-600 text-lg leading-relaxed italic">
+                    "{testimonial.quote}"
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
+
+        {/* Pagination Dots */}
+        <div className="flex justify-center space-x-2 mb-24">
+          {testimonials.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentIndex(idx)}
+              className={`w-2.5 h-2.5 rounded-full transition-all ${
+                currentIndex === idx ? "bg-blue-600 w-6" : "bg-gray-300"
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* Bottom CTA Banner */}
+        <div className="bg-[#1868DF] rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between relative overflow-hidden shadow-xl">
+          <div className="flex items-center mb-6 md:mb-0 z-10">
+            <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mr-6 shadow-md shrink-0">
+              <svg className="w-8 h-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">Want to Learn More About Our Training Solutions?</h3>
+              <p className="text-blue-100 text-lg">Get Expert Guidance for Your Team's Success!</p>
+            </div>
+          </div>
+          
+          <button className="bg-white text-blue-600 hover:bg-gray-50 font-semibold py-4 px-8 rounded-xl text-lg flex items-center transition-colors z-10 shrink-0 shadow-sm whitespace-nowrap">
+            Contact Us
+            <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+          
+          {/* Decorative background circle */}
+          <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+        </div>
+
       </div>
     </section>
   );

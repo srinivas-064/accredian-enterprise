@@ -1,111 +1,85 @@
-'use client';
-
-import React, { useEffect, useRef } from 'react';
-import SectionHeading from '@/components/ui/SectionHeading';
+"use client";
 
 const audiences = [
   {
-    title: 'Tech Professionals',
-    icon: '💻',
-    description: 'Software engineers, data scientists, and IT professionals looking to deepen technical expertise and stay current with emerging technologies.',
-    tag: 'Advanced Technical Skills',
-    tagBg: 'bg-blue-100',
-    tagColor: 'text-blue-700'
+    title: "Tech Professionals",
+    description: "Enhance expertise, embrace tech, drive innovation.",
+    icon: (
+      <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+    )
   },
   {
-    title: 'Non-Tech Professionals',
-    icon: '📈',
-    description: 'Business analysts, marketing managers, and operations leaders seeking to leverage technology and data for better decision-making.',
-    tag: 'Business & Strategy',
-    tagBg: 'bg-emerald-100',
-    tagColor: 'text-emerald-700'
+    title: "Non-Tech Professionals",
+    description: "Adapt digitally, collaborate in tech environments.",
+    icon: (
+      <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    )
   },
   {
-    title: 'Emerging Talent',
-    icon: '🌱',
-    description: 'Early-career professionals and recent graduates building foundational skills for accelerated career growth and development.',
-    tag: 'Foundation Building',
-    tagBg: 'bg-amber-100',
-    tagColor: 'text-amber-700'
+    title: "Emerging Professionals",
+    description: "Develop powerful skills for rapid career growth.",
+    icon: (
+      <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+      </svg>
+    )
   },
   {
-    title: 'Senior Executives',
-    icon: '🎯',
-    description: 'C-suite leaders, VPs, and directors driving organizational transformation and strategic innovation at enterprise scale.',
-    tag: 'Strategic Leadership',
-    tagBg: 'bg-violet-100',
-    tagColor: 'text-violet-700'
-  },
+    title: "Senior Professionals",
+    description: "Strengthen leadership, enhance strategic decisions.",
+    icon: (
+      <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+    )
+  }
 ];
 
 export default function WhoShouldJoin() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const targets = entry.target.querySelectorAll('.animate-on-scroll');
-            targets.forEach((target, index) => {
-              setTimeout(() => {
-                target.classList.remove('opacity-0', 'translate-y-4');
-                target.classList.add('opacity-100', 'translate-y-0');
-              }, index * 100);
-            });
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    return () => {
-      if (containerRef.current) {
-        observer.unobserve(containerRef.current);
-      }
-    };
-  }, []);
-
   return (
-    <section id="audience" className="bg-gradient-to-b from-slate-50 to-white py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={containerRef}>
-        <SectionHeading 
-          title="Who Should Join?" 
-          subtitle="Tailored learning paths for every professional level" 
-        />
-
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {audiences.map((audience, index) => (
-            <div 
-              key={index}
-              className="animate-on-scroll opacity-0 translate-y-4 transition-all duration-500 bg-white rounded-2xl p-8 shadow-md relative overflow-hidden hover:shadow-xl hover:scale-[1.02] flex flex-col group"
-            >
-              {/* Decorative faint icon */}
-              <div className="absolute top-4 right-4 text-8xl opacity-5 pointer-events-none select-none transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
-                {audience.icon}
-              </div>
-
-              <div className="text-4xl mb-2">
-                {audience.icon}
-              </div>
-              
-              <h3 className="text-xl font-bold mt-4 text-gray-900">{audience.title}</h3>
-              <p className="text-gray-500 text-sm mt-3 mb-6 flex-grow leading-relaxed">
-                {audience.description}
-              </p>
-              
-              <div className="mt-auto pt-4">
-                <span className={`inline-block text-xs font-medium px-3 py-1 rounded-full ${audience.tagBg} ${audience.tagColor}`}>
-                  {audience.tag}
-                </span>
-              </div>
+    <section className="py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-[#1868DF] rounded-3xl overflow-hidden flex flex-col lg:flex-row relative">
+          
+          {/* Left Side */}
+          <div className="lg:w-[45%] p-10 lg:p-14 text-white z-10 flex flex-col justify-between">
+            <div>
+              <p className="text-blue-100 font-medium mb-2 text-lg">Who Should Join?</p>
+              <h2 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">
+                Strategic Skill<br />Enhancement
+              </h2>
             </div>
-          ))}
+            
+            {/* Image placeholder */}
+            <div className="mt-8 lg:mt-0 relative h-64 lg:h-80 w-full rounded-xl border border-white/20 bg-blue-500/20 flex items-center justify-center">
+              <span className="text-blue-200">Human Illustration Space</span>
+            </div>
+          </div>
+
+          {/* Right Side */}
+          <div className="lg:w-[55%] p-10 lg:p-14 lg:pl-0 z-10 flex items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
+              {audiences.map((audience, idx) => (
+                <div key={idx} className="flex flex-col">
+                  <div className="w-14 h-14 rounded-xl border-2 border-white/20 flex items-center justify-center mb-4">
+                    {audience.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2">{audience.title}</h3>
+                  <p className="text-blue-100 text-sm leading-relaxed">{audience.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Decorative background shapes if needed */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
+            <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-400 rounded-full blur-3xl"></div>
+          </div>
         </div>
       </div>
     </section>
